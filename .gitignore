@@ -7,3 +7,6 @@ logs
 
 # Dependency directory
 node_modules
+
+# Distribution files
+dist
