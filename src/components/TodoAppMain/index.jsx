@@ -1,5 +1,6 @@
 import './main.css';
 import React from 'react';
+import TodoHeader from '../TodoHeader';
 
 export default class TodoAppMain extends React.Component {
   constructor(props) {
@@ -50,7 +51,9 @@ export default class TodoAppMain extends React.Component {
 
   render() {
     return (
-      <h1>Demo</h1>
+      <main className="todoapp-main">
+        <TodoHeader value={this.state.value} />
+      </main>
     );
   }
 }
