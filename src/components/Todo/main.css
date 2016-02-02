@@ -1,0 +1,64 @@
+.todo-input,
+.todo-display {
+  font-size: 1.50em;
+  line-height: 1;
+  padding: 16px 50px 16px 60px;
+}
+
+.todo-input {
+  margin: 0;
+  width: 100%;
+  color: inherit;
+  outline: none;
+  border: none;
+}
+
+.todo-check {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.todo-check:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+
+.todo-check:checked:after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}
+
+.todo-delete {
+  position: absolute;
+  top: 16px;
+  right: 14px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  font-size: 0.70em;
+  color: #cc9a9a;
+  background-color: transparent;
+  outline: none;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.todo-delete:after {
+  content: "X";
+}
+
+.todo-display:hover .todo-delete {
+  visibility: visible;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.todo-display span {
+  word-wrap: break-word;
+  transition: all 0.2s;
+}

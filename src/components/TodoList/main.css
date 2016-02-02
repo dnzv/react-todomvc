@@ -1,0 +1,11 @@
+.todo-list li {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: left;
+  border-top: 1px solid #ededed;
+}
+
+.todo-list li:last-child {
+  border-bottom: 1px solid #ededed;
+}

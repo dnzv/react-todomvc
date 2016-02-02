@@ -1,7 +1,7 @@
 import './main.css';
 import React from 'react';
 
-export default class TodoAppMain extends React.Component {
+export default class TodoFooter extends React.Component {
   constructor(props) {
     super(props);
   }

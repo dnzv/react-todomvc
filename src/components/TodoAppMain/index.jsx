@@ -1,6 +1,7 @@
 import './main.css';
 import React from 'react';
 import TodoHeader from '../TodoHeader';
+import TodoList from '../TodoList';
 import TodoFooter from '../TodoFooter';
 
 export default class TodoAppMain extends React.Component {
@@ -70,6 +71,24 @@ export default class TodoAppMain extends React.Component {
       this.state.todos.length > 0 && this.activeTodoCount() === 0 ? true : false
     );
 
+    const filter = this.state.filter;
+    const todos = this.state.todos.filter(function(todo) {
+      switch(filter) {
+        case 'all':
+          return todo;
+          break;
+        case 'active':
+          if (!todo.completed) {
+            return todo;
+          }
+          break;
+        case 'completed':
+          if (todo.completed) {
+            return todo;
+          }
+      }
+    });
+
     return (
       <main className="todoapp-main">
         <TodoHeader value={this.state.value}
@@ -78,6 +97,10 @@ export default class TodoAppMain extends React.Component {
                     onCompleteAll={this.completeAll}
                     checked={isAllCompleted}
                     display={this.state.todos.length > 0} />
+        <TodoList todos={todos}
+                  onEdit={this.editTodo}
+                  onDelete={this.deleteTodo}
+                  onComplete={this.completeTodo} />
         <TodoFooter todoCount={this.state.todos.length}
                     activeCount={this.activeTodoCount()}
                     onClearCompleted={this.clearCompleted}
