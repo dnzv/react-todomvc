@@ -45,7 +45,7 @@ if(TARGET === 'start' || !TARGET) {
       inline: true,
       progress: true,
       stats: 'errors-only',
-      host: '0.0.0.0', //process.env.HOST,
+      host: process.env.HOST,
       port: process.env.PORT
     },
     plugins: [
