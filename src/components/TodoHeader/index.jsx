@@ -6,14 +6,21 @@ export default class TodoHeader extends React.Component {
     super(props);
   }
 
-  render() {    
+  render() {
+    const display = (this.props.display ? 'block' : 'none');
+
     return (
       <div className="todo-header">
         <input type="checkbox"
-               className="todo-header-check" />
+               className="todo-header-check"
+               checked={this.props.checked}
+               onChange={this.toggleComplete}
+               style={{display: display}} />
         <input className="todo-header-input"
                value={this.props.value}
-               placeholder="What's Next?" />
+               placeholder="What's Next?"
+               onKeyUp={this.props.onKeyUp}
+               onChange={this.props.onChange} />
       </div>
     );
   }
