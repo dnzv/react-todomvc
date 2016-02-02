@@ -3,6 +3,7 @@ const assign = require('object-assign');
 const webpack = require('webpack');
 
 const TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET;
 const PATHS = {
   src: path.join(__dirname, 'src'),
   dist: path.join(__dirname, 'dist')
