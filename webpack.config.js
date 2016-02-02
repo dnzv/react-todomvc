@@ -24,7 +24,7 @@ const common = {
       {
         test: /\.css$/,
         include: PATHS.app,
-        loaders: ['style', 'css']
+        loaders: ['style', 'css', 'autoprefixer']
       },
       {
         test: /\.jsx?$/,

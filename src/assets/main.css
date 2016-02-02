@@ -22,6 +22,18 @@ input {
   font-weight: 300;
 }
 
+input::-webkit-input-placeholder {
+  font-style: italic;
+	color: #e6e6e6;
+	font-weight: 300;
+}
+
+input::-moz-placeholder {
+  font-style: italic;
+	color: #e6e6e6;
+	font-weight: 300;
+}
+
 input::input-placeholder {
 	font-style: italic;
 	color: #e6e6e6;
