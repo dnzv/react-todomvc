@@ -1,5 +1,6 @@
 import './main.css';
 import React from 'react';
+import TodoAppMain from '../TodoAppMain';
 
 export default class TodoApp extends React.Component {
   render() {
@@ -8,6 +9,7 @@ export default class TodoApp extends React.Component {
         <header>
           <h1 className="todoapp-h1">todos</h1>
         </header>
+        <TodoAppMain />
         <footer className="todoapp-footer">
           <div className="todoapp-footer-info">
             <span>Double-click to edit a todo</span>
