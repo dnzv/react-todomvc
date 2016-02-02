@@ -4,6 +4,7 @@ import React from 'react';
 export default class TodoHeader extends React.Component {
   constructor(props) {
     super(props);
+    this.toggleComplete = this.toggleComplete.bind(this);
   }
 
   render() {
@@ -23,5 +24,13 @@ export default class TodoHeader extends React.Component {
                onChange={this.props.onChange} />
       </div>
     );
+  }
+
+  toggleComplete(e) {
+    if (e.target.checked) {
+      this.props.onCompleteAll(true);
+    } else {
+      this.props.onCompleteAll(false);
+    }
   }
 }

@@ -5,12 +5,12 @@ export default class Todo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.renderEdit.bind(this);
-    this.renderTodo.bind(this);
-    this.edit.bind(this);
-    this.checkEnter.bind(this);
-    this.finishEdit.bind(this);
-    this.toggleComplete.bind(this);
+    this.renderEdit = this.renderEdit.bind(this);
+    this.renderTodo = this.renderTodo.bind(this);
+    this.edit = this.edit.bind(this);
+    this.checkEnter = this.checkEnter.bind(this);
+    this.finishEdit = this.finishEdit.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
 
     this.state = {
       editing: false

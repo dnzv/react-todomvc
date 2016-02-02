@@ -8,19 +8,19 @@ export default class TodoAppMain extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addTodo.bind(this);
-    this.editTodo.bind(this);
-    this.deleteTodo.bind(this);
-    this.completeTodo.bind(this);
-    this.completeAll.bind(this);
-    this.clearCompleted.bind(this);
-    this.showAll.bind(this);
-    this.showActive.bind(this);
-    this.showCompleted.bind(this);
-    this.handleChange.bind(this);
-    this.handleKeyUp.bind(this);
-    this.toggleComplete.bind(this);
-    this.activeTodoCount.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+    this.editTodo = this.editTodo.bind(this);
+    this.deleteTodo = this.deleteTodo.bind(this);
+    this.completeTodo = this.completeTodo.bind(this);
+    this.completeAll = this.completeAll.bind(this);
+    this.clearCompleted = this.clearCompleted.bind(this);
+    this.showAll = this.showAll.bind(this);
+    this.showActive = this.showActive.bind(this);
+    this.showCompleted = this.showCompleted.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
+    this.activeTodoCount = this.activeTodoCount.bind(this);
 
     this.state = {
       todos: [
@@ -32,7 +32,7 @@ export default class TodoAppMain extends React.Component {
         {
           id: 2,
           task: "Move to local",
-          completed: false
+          completed: true
         },
         {
           id: 3,
@@ -187,7 +187,7 @@ export default class TodoAppMain extends React.Component {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.setState({value: ''});
-      //this.addTodo(e.target.value);
+      this.addTodo(e.target.value);
     }
   }
 
