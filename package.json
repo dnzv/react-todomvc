@@ -1,7 +1,7 @@
 {
-  "name": "webpack-starter",
+  "name": "react-todomvc",
   "version": "1.0.0",
-  "description": "Webpack starter kit",
+  "description": "React todomvc example",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
