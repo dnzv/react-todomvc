@@ -1,4 +1,4 @@
-import {} from './main.css';
+import './main.css';
 import component from './component';
 
 var app = document.createElement('div');
