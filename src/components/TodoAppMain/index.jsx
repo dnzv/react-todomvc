@@ -26,41 +26,21 @@ export default class TodoAppMain extends React.Component {
       todos: [
         {
           id: 1,
-          task: "Complete todo app",
-          completed: true
-        },
-        {
-          id: 2,
-          task: "Move to local",
-          completed: true
-        },
-        {
-          id: 3,
           task: "Integrate flux",
           completed: false
         },
         {
-          id: 4,
-          task: "Personalize",
+          id: 2,
+          task: "Polish",
           completed: false
         },
         {
-          id: 5,
-          task: "Add proper id",
-          completed: false
-        },
-        {
-          id: 6,
-          task: "Integrate localStorage",
-          completed: false
-        },
-        {
-          id: 7,
-          task: "Push to GitHub",
+          id: 3,
+          task: "Add ID and localStorage",
           completed: false
         }
       ],
-      currId: 7,
+      currId: 3,
       value: '',
       filter: 'all'
     };
