@@ -1,6 +1,7 @@
 import './main.css';
 import React from 'react';
 import TodoHeader from '../TodoHeader';
+import TodoFooter from '../TodoFooter';
 
 export default class TodoAppMain extends React.Component {
   constructor(props) {
@@ -77,6 +78,13 @@ export default class TodoAppMain extends React.Component {
                     onCompleteAll={this.completeAll}
                     checked={isAllCompleted}
                     display={this.state.todos.length > 0} />
+        <TodoFooter todoCount={this.state.todos.length}
+                    activeCount={this.activeTodoCount()}
+                    onClearCompleted={this.clearCompleted}
+                    onAll={this.showAll}
+                    onActive={this.showActive}
+                    onCompleted={this.showCompleted}
+                    filter={this.state.filter} />
       </main>
     );
   }
