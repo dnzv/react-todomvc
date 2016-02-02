@@ -16,7 +16,9 @@
     "hot",
     "es6",
     "es2015",
-    "babel"
+    "babel",
+    "react",
+    "jsx"
   ],
   "author": "Deniz Vahaboglu",
   "license": "MIT",

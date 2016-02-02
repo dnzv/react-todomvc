@@ -15,6 +15,9 @@ const common = {
     publicPath: '/dist/assets/',
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [
       {
