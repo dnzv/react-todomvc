@@ -5,16 +5,7 @@ export default class Todo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.renderEdit = this.renderEdit.bind(this);
-    this.renderTodo = this.renderTodo.bind(this);
-    this.edit = this.edit.bind(this);
-    this.checkEnter = this.checkEnter.bind(this);
-    this.finishEdit = this.finishEdit.bind(this);
-    this.toggleComplete = this.toggleComplete.bind(this);
-
-    this.state = {
-      editing: false
-    }
+    this.state = { editing: false };
   }
 
   render() {
@@ -46,7 +37,8 @@ export default class Todo extends React.Component {
 
     return (
       <div className="todo-display">
-        <input className="todo-check" type="checkbox" checked={completed} onChange={this.toggleComplete} />
+        <input className="todo-check" type="checkbox"
+               checked={completed} onChange={this.toggleComplete} />
         <div onDoubleClick={this.edit}>
           <span style={todoDisplaySpanStyle}>{this.props.task}</span>
         </div>
@@ -55,19 +47,19 @@ export default class Todo extends React.Component {
     );
   }
 
-  edit() {
+  edit = () => {
     this.setState({
       editing: true
     });
-  }
+  };
 
-  checkEnter(e) {
+  checkEnter = (e) => {
     if (e.key === 'Enter') {
       this.finishEdit(e);
     }
-  }
+  };
 
-  finishEdit(e) {
+  finishEdit = (e) => {
     const value = e.target.value;
 
     if (this.props.onEdit && value.trim()) {
@@ -76,13 +68,13 @@ export default class Todo extends React.Component {
         editing: false
       });
     }
-  }
+  };
 
-  toggleComplete(e) {
+  toggleComplete = (e) => {
     if (e.target.checked) {
       this.props.onComplete(true);
     } else {
       this.props.onComplete(false);
     }
-  }
+  };
 }

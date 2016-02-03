@@ -2,10 +2,6 @@ import './main.css';
 import React from 'react';
 
 export default class TodoFooter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const filter = this.props.filter;
     const todoCount = this.props.todoCount || 0;

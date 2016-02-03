@@ -2,11 +2,6 @@ import './main.css';
 import React from 'react';
 
 export default class TodoHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.toggleComplete = this.toggleComplete.bind(this);
-  }
-
   render() {
     const display = (this.props.display ? 'block' : 'none');
 
@@ -26,11 +21,11 @@ export default class TodoHeader extends React.Component {
     );
   }
 
-  toggleComplete(e) {
+  toggleComplete = (e) => {
     if (e.target.checked) {
       this.props.onCompleteAll(true);
     } else {
       this.props.onCompleteAll(false);
     }
-  }
+  };
 }

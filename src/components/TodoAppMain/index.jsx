@@ -8,20 +8,6 @@ export default class TodoAppMain extends React.Component {
   constructor(props) {
     super(props);
 
-    this.addTodo = this.addTodo.bind(this);
-    this.editTodo = this.editTodo.bind(this);
-    this.deleteTodo = this.deleteTodo.bind(this);
-    this.completeTodo = this.completeTodo.bind(this);
-    this.completeAll = this.completeAll.bind(this);
-    this.clearCompleted = this.clearCompleted.bind(this);
-    this.showAll = this.showAll.bind(this);
-    this.showActive = this.showActive.bind(this);
-    this.showCompleted = this.showCompleted.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.toggleComplete = this.toggleComplete.bind(this);
-    this.activeTodoCount = this.activeTodoCount.bind(this);
-
     this.state = {
       todos: [
         {
@@ -47,9 +33,9 @@ export default class TodoAppMain extends React.Component {
   }
 
   render() {
-    const isAllCompleted = (
-      this.state.todos.length > 0 && this.activeTodoCount() === 0 ? true : false
-    );
+    const count = this.state.todos.length;
+    const activeCount = this._activeTodoCount();
+    const isAllCompleted = count > 0 && activeCount === 0 ? true : false;
 
     const filter = this.state.filter;
     const todos = this.state.todos.filter(function(todo) {
@@ -76,13 +62,13 @@ export default class TodoAppMain extends React.Component {
                     onChange={this.handleChange}
                     onCompleteAll={this.completeAll}
                     checked={isAllCompleted}
-                    display={this.state.todos.length > 0} />
+                    display={count > 0} />
         <TodoList todos={todos}
                   onEdit={this.editTodo}
                   onDelete={this.deleteTodo}
                   onComplete={this.completeTodo} />
-        <TodoFooter todoCount={this.state.todos.length}
-                    activeCount={this.activeTodoCount()}
+        <TodoFooter todoCount={count}
+                    activeCount={activeCount}
                     onClearCompleted={this.clearCompleted}
                     onAll={this.showAll}
                     onActive={this.showActive}
@@ -92,16 +78,16 @@ export default class TodoAppMain extends React.Component {
     );
   }
 
-  addTodo(todo) {
+  addTodo = (todo) => {
     if (todo.trim()) {
       this.setState({
         todos: this.state.todos.concat([{id: this.state.currId + 1, task: todo.trim()}]),
         currId: this.state.currId + 1
       });
     }
-  }
+  };
 
-  editTodo(id, task) {
+  editTodo = (id, task) => {
     if (!id || !task.trim())
       return;
 
@@ -114,9 +100,9 @@ export default class TodoAppMain extends React.Component {
     });
 
     this.setState({todos: todos});
-  }
+  };
 
-  deleteTodo(id) {
+  deleteTodo = (id) => {
     this.setState({
       todos: this.state.todos.filter(function(todo) {
         if (todo.id !== id) {
@@ -124,20 +110,20 @@ export default class TodoAppMain extends React.Component {
         }
       })
     });
-  }
+  };
 
-  completeTodo(id, state) {
-    this.toggleComplete(id, state);
+  completeTodo = (id, state) => {
+    this._toggleComplete(id, state);
     this.setState({
       todos: this.state.todos
     });
-  }
+  };
 
-  completeAll(state) {
+  completeAll = (state) => {
     this.completeTodo(null, state);
-  }
+  };
 
-  clearCompleted() {
+  clearCompleted = () => {
     this.setState({
       todos: this.state.todos.filter(function(todo) {
         if (!todo.completed) {
@@ -145,33 +131,33 @@ export default class TodoAppMain extends React.Component {
         }
       })
     });
-  }
+  };
 
-  showAll() {
+  showAll = () => {
     this.setState({filter: 'all'});
-  }
+  };
 
-  showActive() {
+  showActive = () => {
     this.setState({filter: 'active'});
-  }
+  };
 
-  showCompleted() {
+  showCompleted = () => {
     this.setState({filter: 'completed'});
-  }
+  };
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({value: e.target.value});
-  }
+  };
 
-  handleKeyUp(e) {
+  handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       this.setState({value: ''});
       this.addTodo(e.target.value);
     }
-  }
+  };
 
-  toggleComplete(id, state) {
+  _toggleComplete(id, state) {
     this.state.todos.forEach(function(todo) {
       if (!id || todo.id === id) {
         todo.completed = state;
@@ -179,7 +165,7 @@ export default class TodoAppMain extends React.Component {
     });
   }
 
-  activeTodoCount() {
+  _activeTodoCount() {
     var count = 0;
     this.state.todos.forEach(function(todo) {
       if (!todo.completed) {
