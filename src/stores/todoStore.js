@@ -70,7 +70,9 @@ Dispather.register((action) => {
     case actionTypes.DELETE_TODO:
       console.log(actionTypes.DELETE_TODO, action.data);
       _todos = _todos.filter((todo) => {
-        if (todo.id !== action.data) {
+        if (!action.data && !todo.completed) {
+          return todo;
+        } else if (action.data && todo.id !== action.data) {
           return todo;
         }
       });

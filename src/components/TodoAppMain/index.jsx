@@ -96,13 +96,7 @@ export default class TodoAppMain extends React.Component {
   };
 
   clearCompleted = () => {
-    this.setState({
-      todos: this.state.todos.filter(function(todo) {
-        if (!todo.completed) {
-          return todo;
-        }
-      })
-    });
+    TodoActions.delete(null);
   };
 
   showAll = () => {
