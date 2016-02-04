@@ -10,7 +10,7 @@ export default class TodoHeader extends React.Component {
         <input type="checkbox"
                className="todo-header-check"
                checked={this.props.checked}
-               onChange={this.toggleComplete}
+               onClick={this.toggleComplete}
                style={{display: display}} />
         <input className="todo-header-input"
                value={this.props.value}

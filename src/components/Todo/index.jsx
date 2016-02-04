@@ -38,7 +38,7 @@ export default class Todo extends React.Component {
     return (
       <div className="todo-display">
         <input className="todo-check" type="checkbox"
-               checked={completed} onChange={this.toggleComplete} />
+               checked={completed} onClick={this.toggleComplete} />
         <div onDoubleClick={this.edit}>
           <span style={todoDisplaySpanStyle}>{this.props.task}</span>
         </div>
