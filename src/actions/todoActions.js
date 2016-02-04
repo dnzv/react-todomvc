@@ -3,7 +3,6 @@ import actionTypes from '../constants/actionTypes';
 
 export default {
   create(todo) {
-    console.log("ACTION: create todo", todo);
     Dispather.dispatch({
       type: actionTypes.CREATE_TODO,
       data: todo
@@ -11,7 +10,6 @@ export default {
   },
 
   update(updatedTodo) {
-    console.log("ACTION: update todo", updatedTodo);
     Dispather.dispatch({
       type: actionTypes.UPDATE_TODO,
       data: updatedTodo
@@ -19,7 +17,6 @@ export default {
   },
 
   delete(id) {
-    console.log("ACTION: delete todo", id);
     Dispather.dispatch({
       type: actionTypes.DELETE_TODO,
       data: id

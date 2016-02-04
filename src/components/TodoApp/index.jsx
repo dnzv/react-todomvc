@@ -14,9 +14,12 @@ export default class TodoApp extends React.Component {
           <div className="todoapp-footer-info">
             <span>Double-click to edit a todo</span>
             <br/>
-            <span>Created by <a href="#">Deniz Vahaboglu</a> using <a href="https://facebook.github.io/react/index.html">React</a></span>
+            <span>{"Created by "}<a href="#">Deniz Vahaboglu</a>{" using "}
+              <a href="https://facebook.github.io/react/">React</a>{" and "}
+              <a href="https://facebook.github.io/flux/">Flux</a>
+            </span>
             <br/>
-            <span>Replicated from <a href="http://todomvc.com">TodoMVC</a></span>
+            <span>{"Replicated from "}<a href="http://todomvc.com">TodoMVC</a></span>
           </div>
         </footer>
       </div>
