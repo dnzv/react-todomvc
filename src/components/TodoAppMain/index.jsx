@@ -3,33 +3,26 @@ import React from 'react';
 import TodoHeader from '../TodoHeader';
 import TodoList from '../TodoList';
 import TodoFooter from '../TodoFooter';
+import TodoActions from '../../actions/todoActions';
+import TodoStore from '../../stores/todoStore';
 
 export default class TodoAppMain extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      todos: [
-        {
-          id: 1,
-          task: "Integrate flux",
-          completed: false
-        },
-        {
-          id: 2,
-          task: "Polish",
-          completed: false
-        },
-        {
-          id: 3,
-          task: "Add ID and localStorage",
-          completed: false
-        }
-      ],
-      currId: 3,
+      todos: TodoStore.getAllTodos(),
       value: '',
       filter: 'all'
     };
+  }
+
+  componentWillMount() {
+    TodoStore.addChangeListener(this.onChange);
+  }
+
+  componentWillUnmount() {
+    TodoStore.removeChangeListener(this.onChange);
   }
 
   render() {
@@ -38,7 +31,7 @@ export default class TodoAppMain extends React.Component {
     const isAllCompleted = count > 0 && activeCount === 0 ? true : false;
 
     const filter = this.state.filter;
-    const todos = this.state.todos.filter(function(todo) {
+    const todos = this.state.todos.filter((todo) => {
       switch(filter) {
         case 'all':
           return todo;
@@ -80,43 +73,22 @@ export default class TodoAppMain extends React.Component {
 
   addTodo = (todo) => {
     if (todo.trim()) {
-      this.setState({
-        todos: this.state.todos.concat([{id: this.state.currId + 1, task: todo.trim()}]),
-        currId: this.state.currId + 1
-      });
+      TodoActions.create({title: todo.trim()});
     }
   };
 
-  editTodo = (id, task) => {
-    if (!id || !task.trim())
+  editTodo = (id, title) => {
+    if (!id || !title.trim())
       return;
-
-    const todos = this.state.todos.map(function(todo) {
-      if (todo.id === id) {
-        todo.task = task;
-        return todo;
-      }
-      return todo;
-    });
-
-    this.setState({todos: todos});
+    TodoActions.update({id, title});
   };
 
   deleteTodo = (id) => {
-    this.setState({
-      todos: this.state.todos.filter(function(todo) {
-        if (todo.id !== id) {
-          return todo;
-        }
-      })
-    });
+    TodoActions.delete(id);
   };
 
   completeTodo = (id, state) => {
-    this._toggleComplete(id, state);
-    this.setState({
-      todos: this.state.todos
-    });
+    TodoActions.update({id, completed: state});
   };
 
   completeAll = (state) => {
@@ -157,14 +129,6 @@ export default class TodoAppMain extends React.Component {
     }
   };
 
-  _toggleComplete(id, state) {
-    this.state.todos.forEach(function(todo) {
-      if (!id || todo.id === id) {
-        todo.completed = state;
-      }
-    });
-  }
-
   _activeTodoCount() {
     var count = 0;
     this.state.todos.forEach(function(todo) {
@@ -174,4 +138,10 @@ export default class TodoAppMain extends React.Component {
     });
     return count;
   }
+
+  onChange = () => {
+    this.setState({
+      todos: TodoStore.getAllTodos()
+    });
+  };
 }

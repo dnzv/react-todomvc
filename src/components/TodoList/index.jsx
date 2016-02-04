@@ -14,7 +14,7 @@ export default class TodoList extends React.Component {
         {todos.map(function(todo) {
           return (
             <li key={todo.id}>
-              <Todo task={todo.task}
+              <Todo title={todo.title}
                     completed={todo.completed}
                     onEdit={onEdit.bind(null, todo.id)}
                     onDelete={onDelete.bind(null, todo.id)}

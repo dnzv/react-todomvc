@@ -19,7 +19,7 @@ export default class Todo extends React.Component {
     return (
       <input className="todo-input" type="text"
              autoFocus={true}
-             defaultValue={this.props.task}
+             defaultValue={this.props.title}
              onBlur={this.finishEdit}
              onKeyUp={this.checkEnter} />
     );
@@ -40,7 +40,7 @@ export default class Todo extends React.Component {
         <input className="todo-check" type="checkbox"
                checked={completed} onClick={this.toggleComplete} />
         <div onDoubleClick={this.edit}>
-          <span style={todoDisplaySpanStyle}>{this.props.task}</span>
+          <span style={todoDisplaySpanStyle}>{this.props.title}</span>
         </div>
         <button className="todo-delete" onClick={this.props.onDelete}></button>
       </div>
