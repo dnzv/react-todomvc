@@ -1,6 +1,8 @@
 const path = require('path');
 const assign = require('object-assign');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
 
 const TARGET = process.env.npm_lifecycle_event;
 process.env.BABEL_ENV = TARGET;
@@ -23,15 +25,18 @@ const common = {
     loaders: [
       {
         test: /\.css$/,
-        include: PATHS.app,
-        loaders: ['style', 'css', 'autoprefixer']
+        include: PATHS.src,
+        loader: "style-loader!css-loader!postcss-loader"
       },
       {
         test: /\.jsx?$/,
-        include: PATHS.app,
+        include: PATHS.src,
         loaders: ['babel?cacheDirectory']
       }
     ]
+  },
+  postcss: function () {
+    return [autoprefixer, precss];
   }
 };
 
@@ -39,7 +44,7 @@ if(TARGET === 'start' || !TARGET) {
   module.exports = assign({}, common, {
     devtool: 'eval-source-map',
     devServer: {
-      contentBase: PATHS.src,
+      contentBase: PATHS.dist,
       historyApiFallback: true,
       hot: true,
       inline: true,
